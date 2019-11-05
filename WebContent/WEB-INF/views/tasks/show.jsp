@@ -7,7 +7,7 @@
         <c:choose>
             <c:when test="${task != null}">
                 <h2>id : <c:out value="${task.id}" />のタスク詳細ページ</h2>
-                <table border="1">
+                <table>
                     <tbody>
                         <tr>
                             <th>タスクの内容</th><td><c:out value="${task.content}" /></td>
