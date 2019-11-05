@@ -39,6 +39,14 @@ public class IndexServlet extends HttpServlet {
         List<Task> tasks = em.createNamedQuery("getAllTasks", Task.class).getResultList();
         em.close();
 
+        // flushメッセージ取得
+        if(request.getSession().getAttribute("flush") != null){
+            // リクエストスコープに保存しセッションスコープのメッセージはremove()
+            // 1回のみの表示にする為
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
+
         // リクエストスコープに保存
         request.setAttribute("tasks", tasks);
 

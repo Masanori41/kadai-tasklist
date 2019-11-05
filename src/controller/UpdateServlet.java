@@ -48,6 +48,8 @@ public class UpdateServlet extends HttpServlet {
             // 編集したtaskの内容をUpdate
             em.getTransaction().begin();
             em.getTransaction().commit();
+            // セッションスコープにflushメッセージを保存
+            request.getSession().setAttribute("flush", "更新が完了しました");
             em.close();
 
             // セッションスコープのidは削除
