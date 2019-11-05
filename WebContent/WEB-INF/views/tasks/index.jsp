@@ -21,6 +21,23 @@
                 </li>
             </c:forEach>
         </ul>
+
+        <div id="pagination">
+            (全 <c:out value="${tasks_count}" /> 件)<br />
+            <c:forEach var="i" begin="1" end = "${((tasks_count - 1) / 15) + 1}" step = "1">
+                <c:choose>
+                    <c:when test="${i == page}">
+                        <!-- 該当ページならリンクなし -->
+                        <c:out value="${i}" />&nbsp;
+                    </c:when>
+
+                    <c:otherwise>
+                        <!-- 該当ページ以外ならリンクあり -->
+                        <a href = "${pageContext.request.contextPath}/index?page=${i}"><c:out value="${i}" /></a>&nbsp;
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </div>
         <p><a href="${pageContext.request.contextPath}/new">新規タスクを作成する</a></p>
     </c:param>
 </c:import>
