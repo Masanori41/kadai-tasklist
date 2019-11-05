@@ -39,11 +39,14 @@ public class EditServlet extends HttpServlet {
         Task task = em.find(Task.class, Integer.parseInt(id));
         em.close();
 
-        request.setAttribute("task", task);
         request.setAttribute("_token", request.getSession().getId());
+        request.setAttribute("task", task);
 
-        // Update, DeleteServletで使うためにidをセッションスコープに保存
-        request.getSession().setAttribute("task_id", task.getId());
+        // idが対応しない場合の対応(taskがnullでNullPointerExceptionが発生してしまう)
+        if(task != null){
+            // Update, DeleteServletで使うためにidをセッションスコープに保存
+            request.getSession().setAttribute("task_id", task.getId());
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/tasks/edit.jsp");
         rd.forward(request, response);

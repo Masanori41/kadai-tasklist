@@ -39,6 +39,7 @@ public class ShowServlet extends HttpServlet {
         Task task = em.find(Task.class, Integer.parseInt(id));
         em.close();
 
+
         request.setAttribute("task", task);
 
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/tasks/show.jsp");
