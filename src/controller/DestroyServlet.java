@@ -42,7 +42,7 @@ public class DestroyServlet extends HttpServlet {
             em.remove(task);
             em.getTransaction().commit();
             // セッションスコープにflushメッセージを保存
-            request.getSession().setAttribute("flush", "削除が削除しました");
+            request.getSession().setAttribute("flush", "削除が完了しました");
             em.close();
 
             // セッションスコープのtask_idは削除
